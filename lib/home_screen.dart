@@ -6,7 +6,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xffF6F6F6),
       appBar: AppBar(
         title: const Text(
           "ToDo",
@@ -24,37 +24,53 @@ class HomeScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
-        child: Icon(Icons.add),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30),
         ),
+        child: const Icon(Icons.add),
       ),
     );
   }
 
   Widget buildToDoListRecord() {
     return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
       child: ListView.separated(
-        itemBuilder: (context, index) => Row(
-          children: [
-            Icon(
-              Icons.check_box_outline_blank_rounded,
-              color: Colors.black.withOpacity(0.5),
-            ),
-            Container(
-              child: Text(
-                " Hello Do",
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
+        itemBuilder: (context, index) => Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                  )
+                ]),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.check_box_outline_blank_rounded,
+                  color: Colors.black.withOpacity(0.5),
                 ),
-              ),
+                const SizedBox(width: 10),
+                const SizedBox(
+                  child: Text(
+                    "Hello Hello",
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+                const Spacer(),
+                Icon(Icons.edit, color: Theme.of(context).colorScheme.primary),
+                const SizedBox(width: 15),
+                const Icon(Icons.delete, color: Colors.red)
+              ],
             ),
-            Spacer(),
-            Icon(Icons.edit, color: Theme.of(context).colorScheme.primary),
-            SizedBox(width: 10),
-            Icon(Icons.delete, color: Colors.red)
-          ],
+          ),
         ),
         separatorBuilder: (context, index) => Container(),
         itemCount: 10,
