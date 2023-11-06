@@ -1,4 +1,0 @@
-#Fri Nov 03 16:20:29 MMT 2023
-base.0=/Users/ninecomplex/Desktop/NineComplex/todo_bloc/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
-path.0=classes.dex
-renamed.0=classes.dex
