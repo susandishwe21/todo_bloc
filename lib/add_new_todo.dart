@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_bloc/bloc/todo_bloc.dart';
-
-import 'models/todo.dart';
+import 'models/todo/datum.dart';
 
 showAddNewToDoDialog(context) {
   return showDialog(
@@ -63,10 +62,11 @@ showAddNewToDoDialog(context) {
                         ),
                         ElevatedButton(
                           onPressed: () {
-                            Todo todos = Todo(title: "HIHI");
+                            Datum todos = Datum(title: "HIHI");
                             context
                                 .read<TodoBloc>()
                                 .add(AddToDoEvent(todo: todos));
+                            Navigator.of(context).pop();
                           },
                           child: const Text("Done"),
                         )

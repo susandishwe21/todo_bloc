@@ -1,7 +1,11 @@
 part of 'todo_bloc.dart';
 
-class TodoState {
-  List<Todo> todos;
+@JsonSerializable()
+class TodoState extends Equatable {
+  final List<Datum> todos;
 
-  TodoState({this.todos = const []});
+  const TodoState({this.todos = const []});
+
+  @override
+  List<Object> get props => [todos];
 }

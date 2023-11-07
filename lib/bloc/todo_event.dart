@@ -10,7 +10,7 @@ class TodoEvent extends Equatable {
 class AddToDoEvent extends TodoEvent {
   const AddToDoEvent({required this.todo});
 
-  final Todo todo;
+  final Datum todo;
 
   @override
   List<Object> get props => [todo];
