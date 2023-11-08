@@ -49,7 +49,8 @@ class AddTodoTaskScreen extends StatelessWidget {
               onPressed: () {
                 Todo todos =
                     Todo(title: txtAddTextController.text, isDone: false);
-                context.read<TodoBloc>().add(AddToDoEvent(todo: todos));
+                context.read<TodoBloc>().add(AddToDoPressed(todo: todos));
+                txtAddTextController.clear();
               },
               child: const Text(
                 "ADD",

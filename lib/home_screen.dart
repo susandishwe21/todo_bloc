@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo_bloc/models/data/todo.dart';
 
 import 'add_new_todo.dart';
 import 'bloc/todo_bloc.dart';
@@ -75,7 +76,16 @@ class HomeScreen extends StatelessWidget {
                         Icon(Icons.edit,
                             color: Theme.of(context).colorScheme.primary),
                         const SizedBox(width: 15),
-                        const Icon(Icons.delete, color: Colors.red)
+                        IconButton(
+                            onPressed: () {
+                              Todo todos = Todo(
+                                  title: state.todos[index].title,
+                                  isDone: false);
+                              context
+                                  .read<TodoBloc>()
+                                  .add(DeleteToDoPressed(todo: todos));
+                            },
+                            icon: const Icon(Icons.delete, color: Colors.red)),
                       ],
                     ),
                   ),
@@ -88,8 +98,6 @@ class HomeScreen extends StatelessWidget {
         );
       },
       buildWhen: (previous, current) {
-        debugPrint("Previous ToDo ${previous.todos.toString()}");
-        debugPrint("Current ToDo ${current.todos.toString()}");
         return previous.todos != current.todos;
       },
     );

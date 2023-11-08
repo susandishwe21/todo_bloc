@@ -11,15 +11,23 @@ part 'todo_bloc.g.dart';
 
 class TodoBloc extends HydratedBloc<TodoEvent, TodoState> {
   TodoBloc() : super(const TodoState()) {
-    on<AddToDoEvent>(_addToDoTask);
+    on<AddToDoPressed>(_addToDoTask);
+    on<DeleteToDoPressed>(_deleteToDoTask);
   }
 
   Future<void> _addToDoTask(
-    AddToDoEvent event,
+    AddToDoPressed event,
     Emitter<TodoState> emit,
   ) async {
     emit(TodoState(todos: List.from(state.todos)..insert(0, event.todo)));
     debugPrint(state.todos.first.title);
+  }
+
+  Future<void> _deleteToDoTask(
+    DeleteToDoPressed event,
+    Emitter<TodoState> emit,
+  ) async {
+    emit(TodoState(todos: List.from(state.todos)..remove(event.todo)));
   }
 
   @override
