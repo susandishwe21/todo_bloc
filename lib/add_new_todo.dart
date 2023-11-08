@@ -24,7 +24,7 @@ class AddTodoTaskScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
-                maxLines: 2,
+                maxLines: null,
                 controller: txtAddTextController,
                 decoration: const InputDecoration(border: InputBorder.none),
                 // decoration: InputDecoration(
