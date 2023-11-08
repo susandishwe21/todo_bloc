@@ -1,6 +1,6 @@
 part of 'todo_bloc.dart';
 
-class TodoEvent extends Equatable {
+abstract class TodoEvent extends Equatable {
   const TodoEvent();
 
   @override
@@ -10,7 +10,7 @@ class TodoEvent extends Equatable {
 class AddToDoEvent extends TodoEvent {
   const AddToDoEvent({required this.todo});
 
-  final Datum todo;
+  final Todo todo;
 
   @override
   List<Object> get props => [todo];

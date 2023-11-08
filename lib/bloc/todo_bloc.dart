@@ -1,9 +1,9 @@
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:json_annotation/json_annotation.dart';
-import '../models/todo/datum.dart';
+
+import '../models/data/todo.dart';
 
 part 'todo_event.dart';
 part 'todo_state.dart';
@@ -23,14 +23,8 @@ class TodoBloc extends HydratedBloc<TodoEvent, TodoState> {
   }
 
   @override
-  TodoState? fromJson(Map<String, dynamic> json) {
-    // TODO: implement fromJson
-    throw UnimplementedError();
-  }
+  TodoState? fromJson(Map<String, dynamic> json) => TodoState.fromJson(json);
 
   @override
-  Map<String, dynamic>? toJson(TodoState state) {
-    // TODO: implement toJson
-    throw UnimplementedError();
-  }
+  Map<String, dynamic>? toJson(TodoState state) => state.toJson();
 }

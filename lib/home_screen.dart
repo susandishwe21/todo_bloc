@@ -24,16 +24,9 @@ class HomeScreen extends StatelessWidget {
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        child: buildToDoListRecord(),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showAddNewToDoDialog(context);
-        },
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30),
+        child: Column(
+          children: [const AddTodoTaskScreen(), buildToDoListRecord()],
         ),
-        child: const Icon(Icons.add),
       ),
     );
   }
@@ -42,52 +35,55 @@ class HomeScreen extends StatelessWidget {
     return BlocBuilder<TodoBloc, TodoState>(
       builder: (context, state) {
         debugPrint("To Do Bloc ${state.todos}");
-        return Container(
-          padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-          child: ListView.separated(
-            itemBuilder: (context, index) {
-              debugPrint(state.todos[index].title);
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.1),
-                        )
-                      ]),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.check_box_outline_blank_rounded,
-                        color: Colors.black.withOpacity(0.5),
-                      ),
-                      const SizedBox(width: 10),
-                      SizedBox(
-                        child: Text(
-                          state.todos[index].title ?? "",
-                          style: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
+        return Expanded(
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+            child: ListView.separated(
+              shrinkWrap: true,
+              itemBuilder: (context, index) {
+                debugPrint(state.todos[index].title);
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 20, horizontal: 15),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                          )
+                        ]),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.check_box_outline_blank_rounded,
+                          color: Colors.black.withOpacity(0.5),
+                        ),
+                        const SizedBox(width: 10),
+                        SizedBox(
+                          child: Text(
+                            state.todos[index].title ?? "",
+                            style: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                         ),
-                      ),
-                      const Spacer(),
-                      Icon(Icons.edit,
-                          color: Theme.of(context).colorScheme.primary),
-                      const SizedBox(width: 15),
-                      const Icon(Icons.delete, color: Colors.red)
-                    ],
+                        const Spacer(),
+                        Icon(Icons.edit,
+                            color: Theme.of(context).colorScheme.primary),
+                        const SizedBox(width: 15),
+                        const Icon(Icons.delete, color: Colors.red)
+                      ],
+                    ),
                   ),
-                ),
-              );
-            },
-            separatorBuilder: (context, index) => Container(),
-            itemCount: state.todos.length,
+                );
+              },
+              separatorBuilder: (context, index) => Container(),
+              itemCount: state.todos.length,
+            ),
           ),
         );
       },
