@@ -24,3 +24,21 @@ class DeleteToDoPressed extends TodoEvent {
   @override
   List<Object> get props => [todo];
 }
+
+class UpdateToDoPressed extends TodoEvent {
+  const UpdateToDoPressed({required this.todo});
+
+  final Todo todo;
+
+  @override
+  List<Object> get props => [todo];
+}
+
+class SelectedToDoPressed extends TodoEvent {
+  const SelectedToDoPressed({required this.todo});
+
+  final Todo todo;
+
+  @override
+  List<Object> get props => [todo];
+}

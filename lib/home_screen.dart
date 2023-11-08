@@ -47,7 +47,7 @@ class HomeScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
                     padding: const EdgeInsets.symmetric(
-                        vertical: 20, horizontal: 15),
+                        vertical: 10, horizontal: 15),
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10),
@@ -63,7 +63,8 @@ class HomeScreen extends StatelessWidget {
                           color: Colors.black.withOpacity(0.5),
                         ),
                         const SizedBox(width: 10),
-                        SizedBox(
+                        Expanded(
+                          flex: 10,
                           child: Text(
                             state.todos[index].title ?? "",
                             style: const TextStyle(
@@ -79,8 +80,9 @@ class HomeScreen extends StatelessWidget {
                         IconButton(
                             onPressed: () {
                               Todo todos = Todo(
-                                  title: state.todos[index].title,
-                                  isDone: false);
+                                title: state.todos[index].title,
+                                isDone: false,
+                              );
                               context
                                   .read<TodoBloc>()
                                   .add(DeleteToDoPressed(todo: todos));
