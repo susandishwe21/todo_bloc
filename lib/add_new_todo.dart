@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_bloc/bloc/todo_bloc.dart';
+import 'package:todo_bloc/home_screen.dart';
 
 import 'models/data/todo.dart';
+
+TextEditingController txtAddTextController = TextEditingController();
 
 class AddTodoTaskScreen extends StatelessWidget {
   const AddTodoTaskScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController txtAddTextController = TextEditingController();
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       child: Container(

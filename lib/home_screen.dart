@@ -5,6 +5,8 @@ import 'package:todo_bloc/models/data/todo.dart';
 import 'add_new_todo.dart';
 import 'bloc/todo_bloc.dart';
 
+int indexUpdate = 0;
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -74,8 +76,15 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                         const Spacer(),
-                        Icon(Icons.edit,
-                            color: Theme.of(context).colorScheme.primary),
+                        IconButton(
+                            onPressed: () {
+                              txtAddTextController.text =
+                                  state.todos[index].title.toString();
+                              context.read<TodoBloc>().add(UpdateToDoPressed(
+                                  title: txtAddTextController.text));
+                            },
+                            icon: Icon(Icons.edit,
+                                color: Theme.of(context).colorScheme.primary)),
                         const SizedBox(width: 15),
                         IconButton(
                             onPressed: () {

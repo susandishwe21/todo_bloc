@@ -26,19 +26,19 @@ class DeleteToDoPressed extends TodoEvent {
 }
 
 class UpdateToDoPressed extends TodoEvent {
-  const UpdateToDoPressed({required this.todo});
+  const UpdateToDoPressed({required this.title});
 
-  final Todo todo;
+  final String title;
 
   @override
-  List<Object> get props => [todo];
+  List<Object> get props => [title];
 }
 
 class SelectedToDoPressed extends TodoEvent {
-  const SelectedToDoPressed({required this.todo});
+  const SelectedToDoPressed({required this.isSelected});
 
-  final Todo todo;
+  final bool isSelected;
 
   @override
-  List<Object> get props => [todo];
+  List<Object> get props => [isSelected];
 }
